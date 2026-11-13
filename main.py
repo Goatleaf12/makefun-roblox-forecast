@@ -15,7 +15,14 @@ the window are tapered by the fraction of the window they survive.
 
 Backtested on three archive splits (train before Nov 4 / Nov 5 / Nov 6,
 scored on the reads after), this beats the house persistence baseline by
-+12 to +16 log-score points on every split.
++12 to +17 log-score points on every split (-39.80 / -39.48 / -35.35 vs
+baseline -52.11 / -55.85 / -52.13; mean -38.21 vs -53.36). The velocity
+window is 40h: with the archive's sparse reads, a game's own rank velocity
+measured over 40h is far less noisy than over 18h, and the gain grows with
+the forecast horizon (verified per-read on the Nov 5 split: better on all
+11 reads, +0.6 on the first, +4 to +5.5 on the later ones). The same
+config also wins on a 72h-window protocol over five cuts (Nov 2-6,
+mean -37.57 vs baseline -38.53).
 
 Standard library only. Deterministic: no randomness, sorted iteration,
 fixed float rounding, so two runs write byte-identical output.
@@ -29,12 +36,12 @@ OUTPUT_DIR = os.environ.get("MAKEFUN_OUTPUT_DIR", "/output")
 
 # Tuned on archive backtests (see module docstring).
 SIGMA0 = 2.0        # rank std at horizon 0
-DIFF_PER_H = 1.0    # variance growth per forecast hour
-UNNAMED = 0.35      # share of each place left unnamed (new games)
+DIFF_PER_H = 0.7    # variance growth per forecast hour
+UNNAMED = 0.30      # share of each place left unnamed (new games)
 MIN_P = 0.002       # smallest probability row written
-MAX_RANK = 97       # deepest last rank still modelled
+MAX_RANK = 60       # deepest last rank still modelled
 VEL_WEIGHT = 0.3    # blend of own recent velocity into drift
-VEL_WINDOW_H = 18.0
+VEL_WINDOW_H = 40.0
 VEL_CLAMP = 15.0    # max |rank change| per 6h credited to velocity
 MAX_AGE_DAYS = 28.0
 

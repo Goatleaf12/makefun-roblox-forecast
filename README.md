@@ -4,7 +4,7 @@
 [![rank](https://make.fun/badge/roblox-up-and-coming-forecast-01/Goatleaf12/makefun-roblox-forecast/rank.svg)](https://make.fun/bounty/roblox-up-and-coming-forecast-01/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=roblox-up-and-coming-forecast-01)
 [![reward](https://make.fun/badge/roblox-up-and-coming-forecast-01/Goatleaf12/makefun-roblox-forecast/reward.svg)](https://make.fun/bounty/roblox-up-and-coming-forecast-01?utm_source=github&utm_medium=readme&utm_campaign=roblox-up-and-coming-forecast-01)
 
-A Gaussian rank-diffusion forecaster for Roblox's Up-and-Coming chart: it models each game's rank as a drifting, diffusing random walk, blends in the game's own recent rank velocity, and leaves 35% of each place unnamed for games never seen before. Backtested +12 to +16 log-score points over the house persistence baseline on three archive splits.
+A Gaussian rank-diffusion forecaster for Roblox's Up-and-Coming chart: it models each game's rank as a drifting, diffusing random walk, blends in the game's own recent rank velocity measured over 40 hours, and leaves 30% of each place unnamed for games never seen before. Backtested +12 to +17 log-score points over the house persistence baseline on three archive splits (-39.80 / -39.48 / -35.35 vs baseline -52.11 / -55.85 / -52.13).
 
 ## Run it
 
